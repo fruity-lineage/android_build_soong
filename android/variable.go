@@ -75,6 +75,17 @@ type variableProperties struct {
 			Header_libs         []string `android:"arch_variant"`
 		} `android:"arch_variant"`
 
+		Use_hardened_malloc struct {
+			Cflags            []string `android:"arch_variant"`
+			Whole_static_libs []string `android:"arch_variant"`
+			Header_libs       []string `android:"arch_variant"`
+			Srcs              []string `android:"arch_variant"`
+		} `android:"arch_variant"`
+
+		Device_has_arm_mte struct {
+			Cflags []string `android:"arch_variant"`
+		} `android:"arch_variant"`
+
 		Malloc_scudo_tsds_max struct {
 			Cflags []string `android:"arch_variant"`
 		} `android:"arch_variant"`
@@ -292,6 +303,8 @@ type ProductVariables struct {
 	Always_use_prebuilt_sdks     *bool    `json:",omitempty"`
 	Skip_boot_jars_check         *bool    `json:",omitempty"`
 	Malloc_low_memory            *bool    `json:",omitempty"`
+	Use_hardened_malloc          *bool    `json:",omitempty"`
+	Device_has_arm_mte           *bool    `json:",omitempty"`
 	Malloc_scudo_tsds_max        *bool    `json:",omitempty"`
 	Malloc_zero_contents         *bool    `json:",omitempty"`
 	Malloc_pattern_fill_contents *bool    `json:",omitempty"`
@@ -873,6 +886,8 @@ func (v *ProductVariables) SetDefaultConfig() {
 		AAPTPrebuiltDPI:     []string{"xhdpi", "xxhdpi"},
 
 		Malloc_low_memory:            boolPtr(false),
+		Use_hardened_malloc:          boolPtr(false),
+		Device_has_arm_mte:           boolPtr(false),
 		Malloc_scudo_tsds_max:        boolPtr(false),
 		Malloc_zero_contents:         boolPtr(true),
 		Malloc_pattern_fill_contents: boolPtr(false),

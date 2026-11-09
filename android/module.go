@@ -3132,6 +3132,10 @@ func (e configurationEvalutor) EvaluateConfiguration(condition proptools.Configu
 			return proptools.ConfigurableValueBool(ctx.Config().BuildFromTextStub())
 		case "debuggable":
 			return proptools.ConfigurableValueBool(ctx.Config().Debuggable())
+		case "use_hardened_malloc":
+			return proptools.ConfigurableValueBool(Bool(ctx.Config().productVariables.Use_hardened_malloc))
+		case "device_has_arm_mte":
+			return proptools.ConfigurableValueBool(Bool(ctx.Config().productVariables.Device_has_arm_mte))
 		case "eng":
 			return proptools.ConfigurableValueBool(ctx.Config().Eng())
 		case "use_debug_art":
